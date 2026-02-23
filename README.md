@@ -1,7 +1,5 @@
 # PROG7311-ICE-TASK-1-ST10445866
 
-[![.NET 10](https://img.shields.io/badge/.NET-10.0-blue.svg)](https://dotnet.microsoft.com/)
-
 ### 🌐 Live Demo: [botshelosekwenacv.runasp.net](http://botshelosekwenacv.runasp.net)
 ### 🌐 GitHub Repository: https://github.com/SekwenaBotshelo/PROG7311-ICE-TASK-1-ST10445866.git 
 
