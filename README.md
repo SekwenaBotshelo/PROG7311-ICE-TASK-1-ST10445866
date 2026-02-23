@@ -4,13 +4,14 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ### 🌐 Live Demo: [botshelosekwenacv.runasp.net](http://botshelosekwenacv.runasp.net)
+### 🌐 GitHub Repository:
 
 ---
 
 ## 📝 Project Overview
 This repository contains a dynamic **Professional Portfolio Dashboard** developed using **ASP.NET Core 10.0 MVC**. 
 
-As a **BCIS (Application Development)** student at **Emeris Ruimsig**, I engineered this platform to showcase my academic progress and technical capabilities. The project demonstrates a full-stack approach, utilizing C# for backend logic and a responsive, animated frontend for an optimal user experience.
+As a **Bachelor of Computer and Information Sciences in Application Development (BCAD)** student at **Emeris Ruimsig**, I engineered this platform to showcase my academic progress and technical capabilities. The project demonstrates a full-stack approach, utilizing C# for backend logic and a responsive, animated frontend for an optimal user experience.
 
 ---
 
@@ -68,8 +69,7 @@ To run this project on your local machine:
 * **Developer:** Botshelo Sekwena
 * **Student ID:** ST10445866
 * **Institution:** Emeris Ruimsig
-* **Course:** Bachelor of Computer and Information Sciences (BCIS)
-* **Specialization:** Application Development
+* **Course:** Bachelor of Computer and Information Sciences in Application Development (BCAD)
 
 ---
 *Created as part of the PROG7311 Advanced Application Development Module - 2026*
