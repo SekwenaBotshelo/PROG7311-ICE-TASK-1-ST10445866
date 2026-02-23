@@ -1,0 +1,226 @@
+﻿@model PROG7311_ICE1_ST10445866.Models.CvViewModel
+
+@{
+    ViewData["Title"] = "Botshelo Sekwena - ST10445866 CV";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<style>
+    .tracking-widest {
+        letter-spacing: 0.15em;
+    }
+
+    .education-border {
+        border-left: 4px solid #0d6efd;
+    }
+
+    .project-card:hover {
+        transform: scale(1.02);
+        transition: 0.3s;
+        cursor: default;
+    }
+
+    .progress {
+        background-color: #e9ecef;
+        border-radius: 10px;
+    }
+</style>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="container mt-3">
+        <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i> @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    </div>
+}
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8">
+
+            <div class="mb-5 animate__animated animate__fadeIn">
+                <div class="d-md-flex justify-content-between align-items-start">
+                    <div>
+                        <h1 class="display-3 fw-bold text-dark mb-0">@Model.Name</h1>
+                        <p class="lead fs-4 text-primary fw-semibold">@Model.Title</p>
+                    </div>
+                    <div class="d-flex gap-2 mt-3 mt-md-0">
+                        <a href="@Url.Action("DownloadCV", "Home")" class="btn btn-primary shadow-sm px-4">
+                            <i class="bi bi-file-earmark-pdf-fill me-2"></i>Download CV
+                        </a>
+                        <a href="mailto:botshelosekwena02@gmail.com" class="btn btn-outline-dark px-4">
+                            <i class="bi bi-envelope-at-fill me-2"></i>Contact
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <section class="mb-5 animate__animated animate__fadeInLeft">
+                <h3 class="fw-bold text-uppercase small tracking-widest text-secondary border-bottom pb-2 mb-4">Professional Profile</h3>
+                <p class="text-muted lh-lg fs-5">@Model.ProfileSummary</p>
+            </section>
+
+            <section class="mb-5 animate__animated animate__fadeInLeft" style="animation-delay: 0.1s;">
+                <h3 class="fw-bold text-uppercase small tracking-widest text-secondary border-bottom pb-2 mb-4">
+                    <i class="bi bi-code-square me-2 text-primary"></i>Key Academic & Personal Projects
+                </h3>
+                @foreach (var project in Model.Projects)
+                {
+                    <div class="card mb-4 border-0 bg-light shadow-sm project-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="fw-bold text-dark mb-0">@project.Title</h5>
+                                <span class="badge bg-white text-primary border border-primary rounded-pill px-3">@project.TechStack</span>
+                            </div>
+                            <p class="text-muted mb-3">@project.Description</p>
+                            <a href="@project.GithubUrl" class="btn btn-sm btn-link text-decoration-none p-0 text-primary fw-bold" target="_blank">
+                                <i class="bi bi-github me-1"></i> View on GitHub
+                            </a>
+                        </div>
+                    </div>
+                }
+            </section>
+
+            <section class="mb-5 animate__animated animate__fadeInLeft" style="animation-delay: 0.2s;">
+                <h3 class="fw-bold text-uppercase small tracking-widest text-secondary border-bottom pb-2 mb-4">
+                    Education History
+                </h3>
+
+                <div class="mb-5 ps-4 education-border bg-light p-4 rounded shadow-sm">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="fw-bold mb-0">Bachelor of Computer and Information Sciences</h5>
+                        <span class="badge bg-primary">2024 - Present</span>
+                    </div>
+                    <p class="text-dark mb-2">Emeris Ruimsig | Specialization: Application Development</p>
+                    <p class="small text-muted mb-0">Entering final year in 2026. Focus on C#, Java, Cloud Architecture, and Enterprise Systems.</p>
+                </div>
+
+                <div class="mb-4 ps-4 border-start border-3 border-secondary p-3">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="fw-bold mb-0">High School Diploma</h5>
+                        <span class="badge bg-secondary">2019 - 2023</span>
+                    </div>
+                    <p class="text-dark mb-1">The Kings School West Rand</p>
+                    <button class="btn btn-sm btn-outline-dark mt-2" data-bs-toggle="modal" data-bs-target="#reqModal" data-doc="High School Diploma Transcript">
+                        <i class="bi bi-lock-fill me-1"></i> Request Transcript
+                    </button>
+                </div>
+            </section>
+
+            <section class="mb-5 animate__animated animate__fadeInLeft" style="animation-delay: 0.3s;">
+                <h3 class="fw-bold text-uppercase small tracking-widest text-secondary border-bottom pb-2 mb-4">Skills & Proficiency</h3>
+                <div class="row">
+                    @foreach (var skill in Model.Skills)
+                    {
+                        <div class="col-md-6 mb-4">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="fw-bold text-dark">@skill.Name</span>
+                                <span class="small text-muted">@skill.Level</span>
+                            </div>
+                            <div class="progress" style="height: 10px;">
+                                @{
+                                    var width = skill.Level == "Proficient" ? "100%" : skill.Level == "Competent" ? "70%" : "35%";
+                                    var color = skill.Level == "Proficient" ? "bg-primary" : skill.Level == "Competent" ? "bg-info" : "bg-warning";
+                                }
+                                <div class="progress-bar @color" role="progressbar" style="width: @width"></div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </section>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="sticky-top" style="top: 2rem;">
+
+                <div class="card border-0 shadow-sm mb-4 animate__animated animate__fadeInRight">
+                    <div class="card-body p-4 text-center">
+                        <h5 class="fw-bold text-primary mb-4">Certifications</h5>
+                        @foreach (var cert in Model.Certifications)
+                        {
+                            <div class="p-3 bg-light rounded mb-3">
+                                <i class="bi bi-patch-check-fill text-success fs-3 d-block mb-2"></i>
+                                <h6 class="fw-bold mb-1">@cert.Name</h6>
+                                <p class="small text-muted mb-1">@cert.Issuer</p>
+                                <span class="badge bg-dark">@cert.Year</span>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm bg-primary text-white mb-4 animate__animated animate__fadeInRight" style="animation-delay: 0.1s;">
+                    <div class="card-body p-4 text-center">
+                        <h5 class="fw-bold mb-3"><i class="bi bi-cpu me-2"></i>Technical Stack</h5>
+                        <div class="d-flex flex-wrap justify-content-center gap-2">
+                            @foreach (var lang in Model.Languages.Where(l => l.Contains("#") || l.Contains("Java") || l.Contains("ASP") || l.Contains("Azure") || l.Contains("SQL")))
+                            {
+                                <span class="badge bg-white text-primary px-3 py-2">@lang</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm bg-dark text-white animate__animated animate__fadeInRight" style="animation-delay: 0.2s;">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold text-info mb-4 text-center">Spoken Languages</h5>
+                        <div class="small">
+                            <div class="d-flex justify-content-between align-items-center mb-3 border-bottom border-secondary pb-2">
+                                <span class="fw-bold">English</span>
+                                <span class="badge bg-info text-dark">Native / Bilingual</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-3 border-bottom border-secondary pb-2">
+                                <span>Português (Brazil)</span>
+                                <span class="badge bg-secondary">Conversational</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-3 border-bottom border-secondary pb-2">
+                                <span>Tswana</span>
+                                <span class="badge bg-secondary">Conversational</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Afrikaans</span>
+                                <span class="badge bg-secondary">Conversational</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="reqModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Request Document Access</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <form asp-action="RequestDocument" method="post">
+                <div class="modal-body p-4 text-center">
+                    <input type="hidden" name="documentName" id="modalDocInput" />
+                    <p>Requesting: <strong id="modalDocDisplay"></strong></p>
+                    <input type="email" name="requesterEmail" class="form-control" placeholder="your@email.com" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary w-100">Send Request</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        var reqModal = document.getElementById('reqModal')
+        reqModal.addEventListener('show.bs.modal', function (event) {
+            var doc = event.relatedTarget.getAttribute('data-doc')
+            document.getElementById('modalDocInput').value = doc
+            document.getElementById('modalDocDisplay').innerText = doc
+        })
+    </script>
+}

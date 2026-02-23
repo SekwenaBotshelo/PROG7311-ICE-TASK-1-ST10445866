@@ -1,0 +1,79 @@
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: #f8f9fa; /* Light grey background to make white cards pop */
+}
+
+/* --- Original Bootstrap Overrides --- */
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+/* --- New Animation & Engagement Effects --- */
+
+/* 1. Project Card Hover Effect */
+.project-card {
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    border-radius: 12px;
+}
+
+    .project-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 14px 28px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.08) !important;
+        border-left: 5px solid #0d6efd !important;
+    }
+
+/* 2. Hero Section Subtle Float */
+.hero-section {
+    background: linear-gradient(135deg, #ffffff 0%, #f1f4f9 100%);
+    animation: fadeInDown 0.8s ease-out;
+}
+
+/* 3. Skill Badge Pulse */
+.badge-skill {
+    transition: all 0.2s ease;
+}
+
+    .badge-skill:hover {
+        background-color: #0d6efd !important;
+        color: white !important;
+        transform: scale(1.1);
+    }
+
+/* 4. Smooth Fade-in for Content */
+.fade-in-section {
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Form placeholders from your original code */
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+    color: var(--bs-secondary-color);
+    text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+    text-align: start;
+}
